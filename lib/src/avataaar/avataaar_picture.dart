@@ -13,6 +13,7 @@ class AvataaarPicture extends StatelessWidget {
   final Avataaar avatar;
   final Widget? placeholder;
   final Widget? errorWidget;
+  final void Function(Exception exception)? onError;
 
   AvataaarPicture.builder({
     Key? key,
@@ -20,6 +21,7 @@ class AvataaarPicture extends StatelessWidget {
     this.baseUrl = AvataaarsApi.baseUrl,
     this.placeholder,
     this.errorWidget,
+    this.onError,
     required this.avatar,
   }) : super(key: key);
 
@@ -59,18 +61,24 @@ class AvataaarPicture extends StatelessWidget {
           },
         );
   }
-}
 
-Future<String> fetchSvg(String url) async {
-  final response = await http.get(Uri.parse(url));
+  Future<String> fetchSvg(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
 
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return response.body;
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load SVG');
+      if (response.statusCode == 200) {
+        // If the server did return a 200 OK response,
+        // then parse the JSON.
+        return response.body;
+      } else {
+        // If the server did not return a 200 OK response,
+        // then throw an exception.
+        onError?.call(Exception('Failed to load SVG'));
+        throw Exception('Failed to load SVG');
+      }
+    } on Exception catch (e) {
+      onError?.call(e);
+      rethrow;
+    }
   }
 }
