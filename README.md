@@ -47,7 +47,7 @@ AvataaarImage(
 );
 
 // By default package will use SvgPicture to render the image. AvataaarPicture could be used to create a custom
- [builder] constructor and create widget for given image url:
+// [builder] constructor and create widget for given image url:
  AvataaarPicture.builder(
   builder: (context, avataaar) {
     // ...
