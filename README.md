@@ -4,11 +4,7 @@
 
 Flutter wrapper widget for [Avataaars](https://getavataaars.com/) API - *a free online avatar generator for anyone to make their beautiful personal avatar easily*.
 
-![AvataaarImage example](https://thumbs.gfycat.com/PettyBeautifulHydra-small.gif)
-
-## Avataaars
-
-Credits to [Pablo Stanley](https://twitter.com/pablostanley) and [Fang-Pen Lin](https://twitter.com/fangpenlin) for creating and making [Avataaars](https://avataaars.com/) available to use. 👏
+![flutter-avataaar](https://user-images.githubusercontent.com/45365279/146657228-b7d5fd77-543c-4a48-b81a-4e4c11956be5.gif)
 
 ## Getting Started
 
@@ -40,21 +36,21 @@ Avataaar.random(
 );
 ```
 
-2. Create AvataaarImage widget and pass it the avatar:
+2. Create AvataaarGenerator widget and pass it the avatar:
 
 ```Dart
 AvataaarImage(
-  avatar: avatar,
-  errorImage: Icon(Icons.error),
-  placeholder: CircularProgressIndicator(),
-  width: 128.0,
+  avataaar: avataaar,
+  onTranslateKey: (String key) {
+  return Translate.get(key);
+  }
+  onChangeAvataaar:() {setState((){});},
 );
 
-// By default package will use CachedNetworkImage to render the image. If it doesn't fit your 
-// needs it's possible to use [builder] constructor and create widget for given image url:
-AvataaarImage.builder(
-  avatar: avatar,
-  builder: (context, url) {
+// By default package will use SvgPicture to render the image. AvataaarPicture could be used to create a custom
+// [builder] constructor and create widget for given image url:
+ AvataaarPicture.builder(
+  builder: (context, avataaar) {
     // ...
   },
 )
@@ -66,4 +62,4 @@ Use `Avataaar.toJson()` and `Avataaar.fromJson(String)` methods to serialize/des
 
 ### Getting image bytes
 
-Instantiate `AvataaarsApi` object and use its `getImage` method or `getUrl` if you prefer to handle fetching the data on your own.
+Use the funtion getPngFromSvg from the class Avataaar to get the File.
