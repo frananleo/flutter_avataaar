@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 class AvataaarGenerator extends StatelessWidget {
   final Avataaar avataaar;
   final AvataaarPicture? avataaarPicture;
-  final String Function(String) onTranslateKey;
+  final String Function(String key) onTranslateKey;
   final void Function() onChangeAvataaar;
   final List<Color> colors;
   AvataaarGenerator({
