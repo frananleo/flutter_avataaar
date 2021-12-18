@@ -4,6 +4,7 @@
 
 Flutter wrapper widget for [Avataaars](https://getavataaars.com/) API - *a free online avatar generator for anyone to make their beautiful personal avatar easily*.
 
+![flutter-avataaar](https://user-images.githubusercontent.com/45365279/146657228-b7d5fd77-543c-4a48-b81a-4e4c11956be5.gif)
 
 ## Getting Started
 
