@@ -10,13 +10,12 @@ class AvataaarGenerator extends StatelessWidget {
   final String Function(String) onTranslateKey;
   final void Function() onChangeAvataaar;
   final List<Color> colors;
-  final Locale language;
   AvataaarGenerator({
     required this.avataaar,
     required this.onTranslateKey,
     required this.onChangeAvataaar,
-    this.avataaarPicture,
     Key? key,
+    this.avataaarPicture,
     this.colors = const <Color>[
       Colors.red,
       Colors.blue,
@@ -28,7 +27,6 @@ class AvataaarGenerator extends StatelessWidget {
       Colors.cyan,
       Colors.deepOrange
     ],
-    this.language = const Locale('en'),
   }) : super(key: key);
 
   @override
