@@ -13,7 +13,6 @@ Flutter wrapper widget for [Avataaars](https://getavataaars.com/) API - *a free 
 // Create avatar with default constructor
 Avataaar(
   skin: Skin.pale,
-  style: Style.circle,
   top: Top.longHairCurly(
     accessoriesType: AccessoriesType.Round,
     facialHair: FacialHair.beardMagestic(
@@ -28,7 +27,6 @@ Avataaar.random();
 // Or mix both
 Avataaar.random(
   skin: Skin.pale,
-  style: Style.circle,
   top: Top.longHairCurly(
     accessoriesType: AccessoriesType.Round,
     facialHair: FacialHair.random,
@@ -39,7 +37,8 @@ Avataaar.random(
 2. Create AvataaarGenerator widget and pass it the avatar:
 
 ```Dart
-AvataaarImage(
+AvataaarGenerator
+(
   avataaar: avataaar,
   onTranslateKey: (String key) {
   return Translate.get(key);
