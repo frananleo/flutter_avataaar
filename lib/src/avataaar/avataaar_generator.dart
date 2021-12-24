@@ -44,323 +44,326 @@ class AvataaarGenerator extends StatelessWidget {
                 onError: onError,
               ),
         ),
-        SingleChildScrollView(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 50.0,
-                padding: EdgeInsets.all(4.0),
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) => const SizedBox(
-                          width: 8.0,
-                        ),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: colors.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          avataaar.backgroundColor = colors[index];
+        Flexible(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50.0,
+                  padding: EdgeInsets.all(4.0),
+                  child: ListView.separated(
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) => const SizedBox(
+                            width: 8.0,
+                          ),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: colors.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            avataaar.backgroundColor = colors[index];
+                            onChangeAvataaar?.call();
+                          },
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(4.0),
+                                decoration: BoxDecoration(
+                                  color: colors[index],
+                                  shape: BoxShape.circle,
+                                ),
+                                width: 32.0,
+                              ),
+                              if (avataaar.backgroundColor == colors[index])
+                                Transform.translate(
+                                  offset: Offset(0.0, -20.0),
+                                  child: Icon(
+                                    Icons.arrow_drop_down,
+                                    color: Theme.of(context).colorScheme.primary,
+                                    size: 32.0,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        );
+                      }),
+                ),
+                //TopType
+                typeBuilder(
+                  context,
+                  () {
+                    showMaterialScrollPicker<TopType>(
+                      context: context,
+                      title: onTranslateKey('top'),
+                      transformer: (item) => onTranslateKey(topTypeNames[item.index]),
+                      items: TopType.values,
+                      selectedItem: avataaar.top.topType,
+                      onChanged: (value) {
+                        avataaar.top.topType = value;
+                        onChangeAvataaar?.call();
+                      },
+                    );
+                  },
+                  onTranslateKey(topTypeNames[avataaar.top.topType.index]),
+                  onTranslateKey('top'),
+                  'cowboy_hat',
+                ),
+                //HairColor
+                if (!(avataaar.top.topType == TopType.noHair ||
+                    avataaar.top.topType == TopType.eyepatch ||
+                    avataaar.top.topType == TopType.hat ||
+                    avataaar.top.topType == TopType.hijab ||
+                    avataaar.top.topType == TopType.turban ||
+                    avataaar.top.topType == TopType.winterHat1 ||
+                    avataaar.top.topType == TopType.winterHat2 ||
+                    avataaar.top.topType == TopType.winterHat3 ||
+                    avataaar.top.topType == TopType.winterHat4 ||
+                    avataaar.top.topType == TopType.longHairFrida ||
+                    avataaar.top.topType == TopType.longHairShavedSides))
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<HairColor>(
+                        context: context,
+                        title: onTranslateKey('hair_color'),
+                        transformer: (item) => onTranslateKey(hairColorNames[item.index]),
+                        items: HairColor.values,
+                        selectedItem: avataaar.top.hairColor,
+                        onChanged: (value) {
+                          avataaar.top.hairColor = value;
                           onChangeAvataaar?.call();
                         },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(4.0),
-                              decoration: BoxDecoration(
-                                color: colors[index],
-                                shape: BoxShape.circle,
-                              ),
-                              width: 32.0,
-                            ),
-                            if (avataaar.backgroundColor == colors[index])
-                              Transform.translate(
-                                offset: Offset(0.0, -20.0),
-                                child: Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Theme.of(context).colorScheme.primary,
-                                  size: 32.0,
-                                ),
-                              ),
-                          ],
-                        ),
                       );
-                    }),
-              ),
-              //TopType
-              typeBuilder(
-                context,
-                () {
-                  showMaterialScrollPicker<TopType>(
-                    context: context,
-                    title: onTranslateKey('top'),
-                    transformer: (item) => onTranslateKey(topTypeNames[item.index]),
-                    items: TopType.values,
-                    selectedItem: avataaar.top.topType,
-                    onChanged: (value) {
-                      avataaar.top.topType = value;
-                      onChangeAvataaar?.call();
                     },
-                  );
-                },
-                onTranslateKey(topTypeNames[avataaar.top.topType.index]),
-                onTranslateKey('top'),
-                'cowboy_hat',
-              ),
-              //HairColor
-              if (!(avataaar.top.topType == TopType.noHair ||
-                  avataaar.top.topType == TopType.eyepatch ||
-                  avataaar.top.topType == TopType.hat ||
-                  avataaar.top.topType == TopType.hijab ||
-                  avataaar.top.topType == TopType.turban ||
-                  avataaar.top.topType == TopType.winterHat1 ||
-                  avataaar.top.topType == TopType.winterHat2 ||
-                  avataaar.top.topType == TopType.winterHat3 ||
-                  avataaar.top.topType == TopType.winterHat4 ||
-                  avataaar.top.topType == TopType.longHairFrida ||
-                  avataaar.top.topType == TopType.longHairShavedSides))
-                typeBuilder(
-                  context,
-                  () {
-                    showMaterialScrollPicker<HairColor>(
-                      context: context,
-                      title: onTranslateKey('hair_color'),
-                      transformer: (item) => onTranslateKey(hairColorNames[item.index]),
-                      items: HairColor.values,
-                      selectedItem: avataaar.top.hairColor,
-                      onChanged: (value) {
-                        avataaar.top.hairColor = value;
-                        onChangeAvataaar?.call();
-                      },
-                    );
-                  },
-                  onTranslateKey(hairColorNames[avataaar.top.hairColor.index]),
-                  onTranslateKey('hair_color'),
-                  'hair_color',
-                ),
+                    onTranslateKey(hairColorNames[avataaar.top.hairColor.index]),
+                    onTranslateKey('hair_color'),
+                    'hair_color',
+                  ),
 
-              //HatColor
-              if ((avataaar.top.topType == TopType.hijab ||
-                  avataaar.top.topType == TopType.turban ||
-                  avataaar.top.topType == TopType.winterHat1 ||
-                  avataaar.top.topType == TopType.winterHat2 ||
-                  avataaar.top.topType == TopType.winterHat3 ||
-                  avataaar.top.topType == TopType.winterHat4))
-                typeBuilder(
-                  context,
-                  () {
-                    showMaterialScrollPicker<HatColor>(
-                      context: context,
-                      title: onTranslateKey('hat_color'),
-                      transformer: (item) => onTranslateKey(hatColorNames[item.index]),
-                      items: HatColor.values,
-                      selectedItem: avataaar.top.hatColor,
-                      onChanged: (value) {
-                        avataaar.top.hatColor = value;
-                        onChangeAvataaar?.call();
-                      },
-                    );
-                  },
-                  onTranslateKey(hatColorNames[avataaar.top.hatColor.index]),
-                  onTranslateKey('hat_color'),
-                  'cowboy_hat_color',
-                ),
-
-              //AccessoriesType
-              if (avataaar.top.topType != TopType.eyepatch)
-                typeBuilder(
-                  context,
-                  () {
-                    showMaterialScrollPicker<AccessoriesType>(
+                //HatColor
+                if ((avataaar.top.topType == TopType.hijab ||
+                    avataaar.top.topType == TopType.turban ||
+                    avataaar.top.topType == TopType.winterHat1 ||
+                    avataaar.top.topType == TopType.winterHat2 ||
+                    avataaar.top.topType == TopType.winterHat3 ||
+                    avataaar.top.topType == TopType.winterHat4))
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<HatColor>(
                         context: context,
-                        title: onTranslateKey('accessories'),
-                        transformer: (item) => onTranslateKey(accessoriesTypeNames[item.index]),
-                        items: AccessoriesType.values,
-                        selectedItem: avataaar.top.accessoriesType,
+                        title: onTranslateKey('hat_color'),
+                        transformer: (item) => onTranslateKey(hatColorNames[item.index]),
+                        items: HatColor.values,
+                        selectedItem: avataaar.top.hatColor,
                         onChanged: (value) {
-                          avataaar.top.accessoriesType = value;
+                          avataaar.top.hatColor = value;
                           onChangeAvataaar?.call();
-                        });
-                  },
-                  onTranslateKey(accessoriesTypeNames[avataaar.top.accessoriesType.index]),
-                  onTranslateKey('accessories'),
-                  'bowtie',
-                ),
-              //FacialHairType
-              if (avataaar.top.topType != TopType.hijab)
-                typeBuilder(
-                  context,
-                  () {
-                    showMaterialScrollPicker<FacialHairType>(
-                      context: context,
-                      title: onTranslateKey('facial_hair_type'),
-                      transformer: (item) => onTranslateKey(facialHairTypeNames[item.index]),
-                      items: FacialHairType.values,
-                      selectedItem: avataaar.top.facialHair.facialHairType,
-                      onChanged: (value) {
-                        avataaar.top.facialHair.facialHairType = value;
-                        onChangeAvataaar?.call();
-                      },
-                    );
-                  },
-                  onTranslateKey(facialHairTypeNames[avataaar.top.facialHair.facialHairType.index]),
-                  onTranslateKey('facial_hair_type'),
-                  'beard',
-                ),
-              //FacialHairColor
-              if (avataaar.top.topType != TopType.hijab &&
-                  avataaar.top.facialHair.facialHairType != FacialHairType.blank)
-                typeBuilder(
-                  context,
-                  () {
-                    showMaterialScrollPicker<FacialHairColor>(
-                      context: context,
-                      title: onTranslateKey('facial_hair_color'),
-                      transformer: (item) => onTranslateKey(facialHairColorNames[item.index]),
-                      items: FacialHairColor.values,
-                      selectedItem: avataaar.top.facialHair.facialHairColor,
-                      onChanged: (value) {
-                        avataaar.top.facialHair.facialHairColor = value;
-                        onChangeAvataaar?.call();
-                      },
-                    );
-                  },
-                  onTranslateKey(facialHairColorNames[avataaar.top.facialHair.facialHairColor.index]),
-                  onTranslateKey('facial_hair_color'),
-                  'beard_color',
-                ),
+                        },
+                      );
+                    },
+                    onTranslateKey(hatColorNames[avataaar.top.hatColor.index]),
+                    onTranslateKey('hat_color'),
+                    'cowboy_hat_color',
+                  ),
 
-              //ClotheType
-              typeBuilder(
-                context,
-                () {
-                  showMaterialScrollPicker<ClotheType>(
-                    context: context,
-                    title: onTranslateKey('clothes_type'),
-                    transformer: (item) => onTranslateKey(clotheTypeNames[item.index]),
-                    items: ClotheType.values,
-                    selectedItem: avataaar.clothes.clotheType,
-                    onChanged: (value) {
-                      avataaar.clothes.clotheType = value;
-                      onChangeAvataaar?.call();
+                //AccessoriesType
+                if (avataaar.top.topType != TopType.eyepatch)
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<AccessoriesType>(
+                          context: context,
+                          title: onTranslateKey('accessories'),
+                          transformer: (item) => onTranslateKey(accessoriesTypeNames[item.index]),
+                          items: AccessoriesType.values,
+                          selectedItem: avataaar.top.accessoriesType,
+                          onChanged: (value) {
+                            avataaar.top.accessoriesType = value;
+                            onChangeAvataaar?.call();
+                          });
                     },
-                  );
-                },
-                onTranslateKey(clotheTypeNames[avataaar.clothes.clotheType.index]),
-                onTranslateKey('clothes_type'),
-                'hawaiian-shirt',
-              ),
-              //ClotheColor
-              if (!(avataaar.clothes.clotheType == ClotheType.blazerShirt ||
-                  avataaar.clothes.clotheType == ClotheType.blazerSweater))
-                typeBuilder(
-                  context,
-                  () {
-                    showMaterialScrollPicker<ClotheColor>(
-                      context: context,
-                      title: onTranslateKey('clothes_color'),
-                      transformer: (item) => onTranslateKey(clotheColorNames[item.index]),
-                      items: ClotheColor.values,
-                      selectedItem: avataaar.clothes.clotheColor,
-                      onChanged: (value) {
-                        avataaar.clothes.clotheColor = value;
-                        onChangeAvataaar?.call();
-                      },
-                    );
-                  },
-                  onTranslateKey(clotheColorNames[avataaar.clothes.clotheColor.index]),
-                  onTranslateKey('clothes_color'),
-                  'hawaiian-shirt_color',
-                ),
-              //Eyes
-              typeBuilder(
-                context,
-                () {
-                  showMaterialScrollPicker<EyeType>(
-                    context: context,
-                    title: onTranslateKey('eyes'),
-                    transformer: (item) => onTranslateKey(eyeTypeNames[item.index]),
-                    items: EyeType.values,
-                    selectedItem: avataaar.eyes.eyeType!,
-                    onChanged: (value) {
-                      avataaar.eyes.eyeType = value;
-                      onChangeAvataaar?.call();
+                    onTranslateKey(accessoriesTypeNames[avataaar.top.accessoriesType.index]),
+                    onTranslateKey('accessories'),
+                    'bowtie',
+                  ),
+                //FacialHairType
+                if (avataaar.top.topType != TopType.hijab)
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<FacialHairType>(
+                        context: context,
+                        title: onTranslateKey('facial_hair_type'),
+                        transformer: (item) => onTranslateKey(facialHairTypeNames[item.index]),
+                        items: FacialHairType.values,
+                        selectedItem: avataaar.top.facialHair.facialHairType,
+                        onChanged: (value) {
+                          avataaar.top.facialHair.facialHairType = value;
+                          onChangeAvataaar?.call();
+                        },
+                      );
                     },
-                  );
-                },
-                onTranslateKey(eyeTypeNames[avataaar.eyes.eyeType!.index]),
-                onTranslateKey('eyes'),
-                'eye',
-              ),
-              //EyesBrown
-              if (avataaar.eyebrow.eyebrowType != null)
+                    onTranslateKey(facialHairTypeNames[avataaar.top.facialHair.facialHairType.index]),
+                    onTranslateKey('facial_hair_type'),
+                    'beard',
+                  ),
+                //FacialHairColor
+                if (avataaar.top.topType != TopType.hijab &&
+                    avataaar.top.facialHair.facialHairType != FacialHairType.blank)
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<FacialHairColor>(
+                        context: context,
+                        title: onTranslateKey('facial_hair_color'),
+                        transformer: (item) => onTranslateKey(facialHairColorNames[item.index]),
+                        items: FacialHairColor.values,
+                        selectedItem: avataaar.top.facialHair.facialHairColor,
+                        onChanged: (value) {
+                          avataaar.top.facialHair.facialHairColor = value;
+                          onChangeAvataaar?.call();
+                        },
+                      );
+                    },
+                    onTranslateKey(facialHairColorNames[avataaar.top.facialHair.facialHairColor.index]),
+                    onTranslateKey('facial_hair_color'),
+                    'beard_color',
+                  ),
+
+                //ClotheType
                 typeBuilder(
                   context,
                   () {
-                    showMaterialScrollPicker<EyebrowType>(
+                    showMaterialScrollPicker<ClotheType>(
                       context: context,
-                      title: onTranslateKey('eyebrow'),
-                      transformer: (item) => onTranslateKey(eyebrowTypeNames[item.index]),
-                      items: EyebrowType.values,
-                      selectedItem: avataaar.eyebrow.eyebrowType!,
+                      title: onTranslateKey('clothes_type'),
+                      transformer: (item) => onTranslateKey(clotheTypeNames[item.index]),
+                      items: ClotheType.values,
+                      selectedItem: avataaar.clothes.clotheType,
                       onChanged: (value) {
-                        avataaar.eyebrow.eyebrowType = value;
+                        avataaar.clothes.clotheType = value;
                         onChangeAvataaar?.call();
                       },
                     );
                   },
-                  onTranslateKey(eyebrowTypeNames[avataaar.eyebrow.eyebrowType!.index]),
-                  onTranslateKey('eyebrow'),
-                  'eyebrows',
+                  onTranslateKey(clotheTypeNames[avataaar.clothes.clotheType.index]),
+                  onTranslateKey('clothes_type'),
+                  'hawaiian-shirt',
                 ),
-              //Mouth
-              if (avataaar.mouth.mouthType != null)
+                //ClotheColor
+                if (!(avataaar.clothes.clotheType == ClotheType.blazerShirt ||
+                    avataaar.clothes.clotheType == ClotheType.blazerSweater))
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<ClotheColor>(
+                        context: context,
+                        title: onTranslateKey('clothes_color'),
+                        transformer: (item) => onTranslateKey(clotheColorNames[item.index]),
+                        items: ClotheColor.values,
+                        selectedItem: avataaar.clothes.clotheColor,
+                        onChanged: (value) {
+                          avataaar.clothes.clotheColor = value;
+                          onChangeAvataaar?.call();
+                        },
+                      );
+                    },
+                    onTranslateKey(clotheColorNames[avataaar.clothes.clotheColor.index]),
+                    onTranslateKey('clothes_color'),
+                    'hawaiian-shirt_color',
+                  ),
+                //Eyes
                 typeBuilder(
                   context,
                   () {
-                    showMaterialScrollPicker<MouthType>(
+                    showMaterialScrollPicker<EyeType>(
                       context: context,
-                      title: onTranslateKey('mouth'),
-                      transformer: (item) => onTranslateKey(mouthTypeNames[item.index]),
-                      items: MouthType.values,
-                      selectedItem: avataaar.mouth.mouthType!,
+                      title: onTranslateKey('eyes'),
+                      transformer: (item) => onTranslateKey(eyeTypeNames[item.index]),
+                      items: EyeType.values,
+                      selectedItem: avataaar.eyes.eyeType!,
                       onChanged: (value) {
-                        avataaar.mouth.mouthType = value;
+                        avataaar.eyes.eyeType = value;
                         onChangeAvataaar?.call();
                       },
                     );
                   },
-                  onTranslateKey(mouthTypeNames[avataaar.eyebrow.eyebrowType!.index]),
-                  onTranslateKey('mouth'),
-                  'mouth',
+                  onTranslateKey(eyeTypeNames[avataaar.eyes.eyeType!.index]),
+                  onTranslateKey('eyes'),
+                  'eye',
                 ),
-              //Skin
-              if (avataaar.skin.skinColor != null)
-                typeBuilder(
-                  context,
-                  () {
-                    showMaterialScrollPicker<SkinColor>(
-                      context: context,
-                      title: onTranslateKey('skin'),
-                      transformer: (item) => onTranslateKey(skinColorNames[item.index]),
-                      items: SkinColor.values,
-                      selectedItem: avataaar.skin.skinColor!,
-                      onChanged: (value) {
-                        avataaar.skin.skinColor = value;
-                        onChangeAvataaar?.call();
-                      },
-                    );
-                  },
-                  onTranslateKey(skinColorNames[avataaar.skin.skinColor!.index]),
-                  onTranslateKey('skin'),
-                  'wheel',
-                ),
-            ],
+                //EyesBrown
+                if (avataaar.eyebrow.eyebrowType != null)
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<EyebrowType>(
+                        context: context,
+                        title: onTranslateKey('eyebrow'),
+                        transformer: (item) => onTranslateKey(eyebrowTypeNames[item.index]),
+                        items: EyebrowType.values,
+                        selectedItem: avataaar.eyebrow.eyebrowType!,
+                        onChanged: (value) {
+                          avataaar.eyebrow.eyebrowType = value;
+                          onChangeAvataaar?.call();
+                        },
+                      );
+                    },
+                    onTranslateKey(eyebrowTypeNames[avataaar.eyebrow.eyebrowType!.index]),
+                    onTranslateKey('eyebrow'),
+                    'eyebrows',
+                  ),
+                //Mouth
+                if (avataaar.mouth.mouthType != null)
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<MouthType>(
+                        context: context,
+                        title: onTranslateKey('mouth'),
+                        transformer: (item) => onTranslateKey(mouthTypeNames[item.index]),
+                        items: MouthType.values,
+                        selectedItem: avataaar.mouth.mouthType!,
+                        onChanged: (value) {
+                          avataaar.mouth.mouthType = value;
+                          onChangeAvataaar?.call();
+                        },
+                      );
+                    },
+                    onTranslateKey(mouthTypeNames[avataaar.eyebrow.eyebrowType!.index]),
+                    onTranslateKey('mouth'),
+                    'mouth',
+                  ),
+                //Skin
+                if (avataaar.skin.skinColor != null)
+                  typeBuilder(
+                    context,
+                    () {
+                      showMaterialScrollPicker<SkinColor>(
+                        context: context,
+                        title: onTranslateKey('skin'),
+                        transformer: (item) => onTranslateKey(skinColorNames[item.index]),
+                        items: SkinColor.values,
+                        selectedItem: avataaar.skin.skinColor!,
+                        onChanged: (value) {
+                          avataaar.skin.skinColor = value;
+                          onChangeAvataaar?.call();
+                        },
+                      );
+                    },
+                    onTranslateKey(skinColorNames[avataaar.skin.skinColor!.index]),
+                    onTranslateKey('skin'),
+                    'wheel',
+                  ),
+              ],
+            ),
           ),
-        )
+        ),
       ],
     );
   }
