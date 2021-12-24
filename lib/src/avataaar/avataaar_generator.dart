@@ -335,7 +335,7 @@ class AvataaarGenerator extends StatelessWidget {
                         },
                       );
                     },
-                    onTranslateKey(mouthTypeNames[avataaar.eyebrow.eyebrowType!.index]),
+                    onTranslateKey(mouthTypeNames[avataaar.mouth.mouthType!.index]),
                     onTranslateKey('mouth'),
                     'mouth',
                   ),
