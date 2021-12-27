@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_avataaar/src/helpers/converter.dart';
 import 'package:flutter_avataaar/src/parts/parts.dart';
 import 'package:flutter_avataaar/src/parts/pieces.dart';
@@ -13,70 +15,51 @@ class FacialHair implements AvataaarPart {
   @override
   List get pieces => [facialHairType, facialHairColor];
 
-  static FacialHair get blank => FacialHair(facialHairType: FacialHairType.blank);
-
-  static FacialHair beardMedium({required FacialHairColor facialHairColor}) => FacialHair(
-        facialHairType: FacialHairType.beardMedium,
-        facialHairColor: facialHairColor,
-      );
-
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is FacialHair &&
-          runtimeType == other.runtimeType &&
-          facialHairType == other.facialHairType &&
-          facialHairColor == other.facialHairColor;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is FacialHair && other.facialHairType == facialHairType && other.facialHairColor == facialHairColor;
+  }
 
   @override
   int get hashCode => facialHairType.hashCode ^ facialHairColor.hashCode;
 
-  static FacialHair beardLight({required FacialHairColor facialHairColor}) =>
-      FacialHair(facialHairType: FacialHairType.beardLight, facialHairColor: facialHairColor);
-
-  static FacialHair beardMagestic({required FacialHairColor facialHairColor}) =>
-      FacialHair(facialHairType: FacialHairType.beardMagestic, facialHairColor: facialHairColor);
-
-  static FacialHair moustacheFancy({required FacialHairColor facialHairColor}) =>
-      FacialHair(facialHairType: FacialHairType.moustacheFancy, facialHairColor: facialHairColor);
-
-  static FacialHair moustacheMagnum({required FacialHairColor facialHairColor}) =>
-      FacialHair(facialHairType: FacialHairType.moustacheMagnum, facialHairColor: facialHairColor);
-
   static FacialHair get random {
-    final facialHairType = randomPiece(FacialHairType.values);
-    final facialHairColor = randomPiece(FacialHairColor.values);
-    switch (facialHairType) {
-      case FacialHairType.blank:
-        return blank;
-      case FacialHairType.beardMedium:
-        return beardMedium(facialHairColor: facialHairColor);
-      case FacialHairType.beardLight:
-        return beardLight(facialHairColor: facialHairColor);
-      case FacialHairType.beardMagestic:
-        return beardMagestic(facialHairColor: facialHairColor);
-      case FacialHairType.moustacheFancy:
-        return moustacheFancy(facialHairColor: facialHairColor);
-      case FacialHairType.moustacheMagnum:
-        return moustacheMagnum(facialHairColor: facialHairColor);
-    }
-  }
-}
-
-class FacialHairConverter extends Converter<FacialHair> {
-  @override
-  FacialHair fromMap(Map<String, dynamic> map) {
     return FacialHair(
-      facialHairType: enumFromJson(FacialHairType.values, map['facialHairType']) ?? FacialHairType.blank,
-      facialHairColor: enumFromJson(FacialHairColor.values, map['facialHairColor']) ?? FacialHairColor.auburn,
+      facialHairType: randomPiece(FacialHairType.values),
+      facialHairColor: randomPiece(FacialHairColor.values),
     );
   }
 
-  @override
-  Map<String, dynamic> toMap(FacialHair value) {
+  FacialHair copyWith({
+    FacialHairType? facialHairType,
+    FacialHairColor? facialHairColor,
+  }) {
+    return FacialHair(
+      facialHairType: facialHairType ?? this.facialHairType,
+      facialHairColor: facialHairColor ?? this.facialHairColor,
+    );
+  }
+
+  factory FacialHair.fromMap(Map<String, dynamic> map) {
+    return FacialHair(
+      facialHairType: Converter.enumFromJson<FacialHairType>(FacialHairType.values, map['facialHairType']),
+      facialHairColor: Converter.enumFromJson<FacialHairColor>(FacialHairColor.values, map['facialHairColor']),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
     return {
-      'facialHairType': enumToJson(value.facialHairType),
-      'facialHairColor': enumToJson(value.facialHairColor),
+      'facialHairType': Converter.enumToJson(facialHairType),
+      'facialHairColor': Converter.enumToJson(facialHairColor),
     };
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory FacialHair.fromJson(String source) => FacialHair.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'FacialHair(facialHairType: $facialHairType, facialHairColor: $facialHairColor)';
 }

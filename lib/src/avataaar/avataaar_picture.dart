@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import '../helpers/avataaar_api.dart';
 
+///Easiest way to render the Avataaar using the [SvgPicture] package. Builder could be customized.
 class AvataaarPicture extends StatelessWidget {
   final String baseUrl;
   final Widget Function(BuildContext context, Avataaar avataaar)? customBuilder;
@@ -34,16 +35,14 @@ class AvataaarPicture extends StatelessWidget {
             if (snapshot.hasData) {
               var string = snapshot.data!;
 
-              /// FROM API TO CHANGE BACKGROUND COLOR
-              if (avatar.backgroundColor != null) {
-                string = BackgroundColorHelper.getSvgWithBackground(
-                    string, avatar.backgroundColor!);
+              // FROM API TO CHANGE BACKGROUND COLOR
+              if (avatar.backgroundColor != AvataaarsApi.baseBackgroundColor) {
+                string = BackgroundColorHelper.getSvgWithBackground(string, avatar.backgroundColor);
               }
               return SvgPicture.string(
                 string,
-                placeholderBuilder: placeholder != null
-                    ? (context) => placeholder!
-                    : (context) => CircularProgressIndicator(),
+                placeholderBuilder:
+                    placeholder != null ? (context) => placeholder! : (context) => CircularProgressIndicator(),
               );
             } else if (snapshot.hasError) {
               return errorWidget ??

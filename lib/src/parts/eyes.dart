@@ -1,14 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter_avataaar/src/helpers/converter.dart';
 import 'package:flutter_avataaar/src/parts/parts.dart';
 import 'package:flutter_avataaar/src/parts/pieces.dart';
 
 class Eyes implements AvataaarPart {
-  EyeType? eyeType;
-  Eyes._({this.eyeType});
+  EyeType eyeType;
+  Eyes({
+    required this.eyeType,
+  });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is Eyes && runtimeType == other.runtimeType && eyeType == other.eyeType;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Eyes && other.eyeType == eyeType;
+  }
 
   @override
   int get hashCode => eyeType.hashCode;
@@ -16,43 +23,30 @@ class Eyes implements AvataaarPart {
   @override
   List get pieces => [eyeType];
 
-  static Eyes get close => Eyes._(eyeType: EyeType.close);
+  static Eyes get random => Eyes(eyeType: randomPiece(EyeType.values));
 
-  static Eyes get cry => Eyes._(eyeType: EyeType.cry);
-
-  static Eyes get defaultEyes => Eyes._(eyeType: EyeType.defaultType);
-
-  static Eyes get dizzy => Eyes._(eyeType: EyeType.dizzy);
-
-  static Eyes get eyeRoll => Eyes._(eyeType: EyeType.eyeRoll);
-
-  static Eyes get happy => Eyes._(eyeType: EyeType.happy);
-
-  static Eyes get hearts => Eyes._(eyeType: EyeType.hearts);
-
-  static Eyes get side => Eyes._(eyeType: EyeType.side);
-
-  static Eyes get squint => Eyes._(eyeType: EyeType.squint);
-
-  static Eyes get surprised => Eyes._(eyeType: EyeType.surprised);
-
-  static Eyes get wink => Eyes._(eyeType: EyeType.wink);
-
-  static Eyes get winkWacky => Eyes._(eyeType: EyeType.winkWacky);
-
-  static Eyes get random => Eyes._(eyeType: randomPiece(EyeType.values));
-}
-
-class EyesConverter extends Converter<Eyes> {
-  @override
-  Eyes fromMap(Map<String, dynamic> map) {
-    return Eyes._(
-      eyeType: enumFromJson(EyeType.values, map['eyeType']),
+  Eyes copyWith({
+    EyeType? eyeType,
+  }) {
+    return Eyes(
+      eyeType: eyeType ?? this.eyeType,
     );
   }
 
-  @override
-  Map<String, dynamic> toMap(Eyes value) {
-    return {'eyeType': enumToJson(value.eyeType)};
+  factory Eyes.fromMap(Map<String, dynamic> map) {
+    return Eyes(
+      eyeType: Converter.enumFromJson(EyeType.values, map['eyeType']),
+    );
   }
+
+  Map<String, dynamic> toMap() {
+    return {'eyeType': Converter.enumToJson(eyeType)};
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Eyes.fromJson(String source) => Eyes.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'Eyes(eyeType: $eyeType)';
 }

@@ -41,7 +41,7 @@ class _AvataaarExampleState extends State<AvataaarExample> {
                         var data = snapshot.data!;
                         return AvataaarGenerator(
                           avataaar: _avatar,
-                          onChangeAvataaar: () => setState(() {}),
+                          onUpdateAvataaar: () => setState(() {}),
                           onTranslateKey: (p0) {
                             return data[p0] ?? 'unknown';
                           },

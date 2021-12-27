@@ -1,5 +1,6 @@
 import 'dart:math';
 
+/// Randomize part of the avataaar with a given list
 T randomPiece<T>(List<T> pieces) {
   final index = Random().nextInt(pieces.length - 1);
   return pieces[index];
