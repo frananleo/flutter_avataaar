@@ -2,6 +2,9 @@
 
 * Fixed png background color generator
 * Added function to hex_color
+* Simplified converted and moved toMap / fromMap to data classes
+* Formatted code
+* Documentation added
 
 ## [0.1.3] - 24/12/21
 
