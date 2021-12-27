@@ -19,7 +19,9 @@ class FacialHair implements AvataaarPart {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is FacialHair && other.facialHairType == facialHairType && other.facialHairColor == facialHairColor;
+    return other is FacialHair &&
+        other.facialHairType == facialHairType &&
+        other.facialHairColor == facialHairColor;
   }
 
   @override
@@ -44,8 +46,10 @@ class FacialHair implements AvataaarPart {
 
   factory FacialHair.fromMap(Map<String, dynamic> map) {
     return FacialHair(
-      facialHairType: Converter.enumFromJson<FacialHairType>(FacialHairType.values, map['facialHairType']),
-      facialHairColor: Converter.enumFromJson<FacialHairColor>(FacialHairColor.values, map['facialHairColor']),
+      facialHairType: Converter.enumFromJson<FacialHairType>(
+          FacialHairType.values, map['facialHairType']),
+      facialHairColor: Converter.enumFromJson<FacialHairColor>(
+          FacialHairColor.values, map['facialHairColor']),
     );
   }
 
@@ -58,8 +62,10 @@ class FacialHair implements AvataaarPart {
 
   String toJson() => json.encode(toMap());
 
-  factory FacialHair.fromJson(String source) => FacialHair.fromMap(json.decode(source));
+  factory FacialHair.fromJson(String source) =>
+      FacialHair.fromMap(json.decode(source));
 
   @override
-  String toString() => 'FacialHair(facialHairType: $facialHairType, facialHairColor: $facialHairColor)';
+  String toString() =>
+      'FacialHair(facialHairType: $facialHairType, facialHairColor: $facialHairColor)';
 }

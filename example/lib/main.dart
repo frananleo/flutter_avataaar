@@ -55,7 +55,8 @@ class _AvataaarExampleState extends State<AvataaarExample> {
                 IconButton(
                   iconSize: 48.0,
                   icon: const Icon(Icons.refresh),
-                  onPressed: () => setState(() => _avatar = Avataaar.random(baseUrl: baseUrl)),
+                  onPressed: () => setState(
+                      () => _avatar = Avataaar.random(baseUrl: baseUrl)),
                 ),
               ],
             ),

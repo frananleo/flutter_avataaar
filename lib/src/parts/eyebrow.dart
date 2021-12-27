@@ -24,7 +24,8 @@ class Eyebrow implements AvataaarPart {
   @override
   int get hashCode => eyebrowType.hashCode;
 
-  static Eyebrow get random => Eyebrow(eyebrowType: randomPiece(EyebrowType.values));
+  static Eyebrow get random =>
+      Eyebrow(eyebrowType: randomPiece(EyebrowType.values));
 
   Eyebrow copyWith({
     EyebrowType? eyebrowType,
@@ -36,7 +37,8 @@ class Eyebrow implements AvataaarPart {
 
   factory Eyebrow.fromMap(Map<String, dynamic> map) {
     return Eyebrow(
-      eyebrowType: Converter.enumFromJson(EyebrowType.values, map['eyebrowType']),
+      eyebrowType:
+          Converter.enumFromJson(EyebrowType.values, map['eyebrowType']),
     );
   }
 
@@ -46,7 +48,8 @@ class Eyebrow implements AvataaarPart {
 
   String toJson() => json.encode(toMap());
 
-  factory Eyebrow.fromJson(String source) => Eyebrow.fromMap(json.decode(source));
+  factory Eyebrow.fromJson(String source) =>
+      Eyebrow.fromMap(json.decode(source));
 
   @override
   String toString() => 'Eyebrow(eyebrowType: $eyebrowType)';

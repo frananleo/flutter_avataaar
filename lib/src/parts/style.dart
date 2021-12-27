@@ -38,7 +38,8 @@ class Style implements AvataaarPart {
 
   factory Style.fromMap(Map<String, dynamic> map) {
     return Style(
-      avatarStyle: Converter.enumFromJson(AvatarStyle.values, map['avatarStyle']),
+      avatarStyle:
+          Converter.enumFromJson(AvatarStyle.values, map['avatarStyle']),
     );
   }
 

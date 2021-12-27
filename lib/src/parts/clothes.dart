@@ -28,7 +28,8 @@ class Clothes implements AvataaarPart {
   }
 
   @override
-  int get hashCode => clotheType.hashCode ^ clotheColor.hashCode ^ graphicType.hashCode;
+  int get hashCode =>
+      clotheType.hashCode ^ clotheColor.hashCode ^ graphicType.hashCode;
 
   Clothes copyWith({
     ClotheType? clotheType,
@@ -54,8 +55,10 @@ class Clothes implements AvataaarPart {
   factory Clothes.fromMap(Map<String, dynamic> map) {
     return Clothes(
       clotheType: Converter.enumFromJson(ClotheType.values, map['clotheType']),
-      clotheColor: Converter.enumFromJson(ClotheColor.values, map['clotheColor']),
-      graphicType: Converter.enumFromJson(GraphicType.values, map['graphicType']),
+      clotheColor:
+          Converter.enumFromJson(ClotheColor.values, map['clotheColor']),
+      graphicType:
+          Converter.enumFromJson(GraphicType.values, map['graphicType']),
     );
   }
 
@@ -69,8 +72,10 @@ class Clothes implements AvataaarPart {
 
   String toJson() => json.encode(toMap());
 
-  factory Clothes.fromJson(String source) => Clothes.fromMap(json.decode(source));
+  factory Clothes.fromJson(String source) =>
+      Clothes.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Clothes(clotheType: $clotheType, clotheColor: $clotheColor, graphicType: $graphicType)';
+  String toString() =>
+      'Clothes(clotheType: $clotheType, clotheColor: $clotheColor, graphicType: $graphicType)';
 }
