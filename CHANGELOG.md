@@ -1,3 +1,8 @@
+## [0.1.4] - 27/12/21
+
+*Fixed png background color generator
+*Added function to hex_color.
+
 ## [0.1.3] - 24/12/21
 
 *Fixed some translations
