@@ -3,9 +3,11 @@ library flutter_avataaar;
 import 'dart:convert' show json;
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_avataaar/src/helpers/avataaar_api.dart';
+import 'package:flutter_avataaar/src/helpers/hex_color.dart';
 
 import '../parts/parts.dart';
 import 'avataaar_converter.dart';
@@ -109,9 +111,14 @@ class Avataaar implements AvataaarPart {
       var finalWidth = width ?? 256.0;
       var finalHeight = height ?? 256.0;
 
-      //getting the unit8Picture from server
-      var unit8Picture = await http.get(Uri.parse(toUrl())).then((it) => it.bodyBytes);
+      //getting the svg from server
+      var svgString = await http.get(Uri.parse(toUrl())).then((it) => it.body);
 
+      if (backgroundColor != null) {
+        svgString = BackgroundColorHelper.getSvgWithBackground(svgString, backgroundColor!);
+      }
+
+      var unit8Picture = Uint8List.fromList(svgString.codeUnits);
       //Produces a [Drawableroot] from a [Uint8List] of SVG byte data (assumes UTF8 encoding).
       var svgDrawableRoot = await svg.fromSvgBytes(unit8Picture, 'svgToPngAvataaar');
 

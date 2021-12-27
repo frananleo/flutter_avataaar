@@ -8,3 +8,15 @@ extension HexColor on Color {
       '${green.toRadixString(16).padLeft(2, '0')}'
       '${blue.toRadixString(16).padLeft(2, '0')}';
 }
+
+class BackgroundColorHelper {
+  static String getSvgWithBackground(String svg, Color backgroundColor) {
+    svg = svg.replaceFirst(
+      '#65C9FF',
+      backgroundColor.toHex(),
+      svg.indexOf('Color/Palette/Blue-01'),
+    );
+
+    return svg;
+  }
+}

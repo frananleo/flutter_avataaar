@@ -36,11 +36,7 @@ class AvataaarPicture extends StatelessWidget {
 
               /// FROM API TO CHANGE BACKGROUND COLOR
               if (avatar.backgroundColor != null) {
-                string = snapshot.data!.replaceFirst(
-                  '#65C9FF',
-                  avatar.backgroundColor!.toHex(),
-                  snapshot.data!.indexOf('Color/Palette/Blue-01'),
-                );
+                string = BackgroundColorHelper.getSvgWithBackground(string, avatar.backgroundColor!);
               }
               return SvgPicture.string(
                 string,
