@@ -1,3 +1,11 @@
+## [0.1.6] - 27/12/21
+
+* Updated readme
+
+## [0.1.5] - 27/12/21
+
+* Updated readme
+
 ## [0.1.4] - 27/12/21
 
 * Fixed png background color generator
