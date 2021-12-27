@@ -13,7 +13,8 @@ Flutter wrapper widget for [Avataaars](https://getavataaars.com/) API - *a free 
 // Create avatar with default constructor
 Avataaar(
   skin: Skin.pale,
-  top: Top.longHairCurly(
+  top: Top(
+    topType: TopType.longHairCurvy,
     accessoriesType: AccessoriesType.Round,
     facialHair: FacialHair.beardMagestic(
       facialHairColor: FacialHairColor.BlondeGolden,
@@ -27,7 +28,8 @@ Avataaar.random();
 // Or mix both
 Avataaar.random(
   skin: Skin.pale,
-  top: Top.longHairCurly(
+  top: Top(
+    topType: TopType.longHairCurvy,
     accessoriesType: AccessoriesType.Round,
     facialHair: FacialHair.random,
   ),
@@ -43,7 +45,7 @@ AvataaarGenerator
   onTranslateKey: (String key) {
   return Translate.get(key);
   }
-  onChangeAvataaar:() {setState((){});},
+  onUpdateAvataaar:() {setState((){});},
 );
 
 // By default package will use SvgPicture to render the image. AvataaarPicture could be used to create a custom
@@ -61,4 +63,4 @@ Use `Avataaar.toJson()` and `Avataaar.fromJson(String)` methods to serialize/des
 
 ### Getting image bytes
 
-Use the funtion getPngFromSvg from the class Avataaar to get the File.
+Use the funtion getPngFromSvg from the class Avataaar to get the png File.
