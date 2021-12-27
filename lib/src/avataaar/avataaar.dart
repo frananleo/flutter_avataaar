@@ -71,14 +71,19 @@ class Avataaar implements AvataaarPart {
           mouth: mouth ?? Mouth.random,
           skin: skin ?? Skin.random,
           style: style ?? Style.circle,
-          backgroundColor: backgroundColor ?? defautlBackgroundColors[Random().nextInt(defautlBackgroundColors.length)],
+          backgroundColor: backgroundColor ??
+              defautlBackgroundColors[
+                  Random().nextInt(defautlBackgroundColors.length)],
         );
 
-  Iterable<MapEntry<String, String>> get pieceEntries =>
-      pieces.expand((it) => it.pieces).where((it) => it != null).map(_splitEnum);
+  Iterable<MapEntry<String, String>> get pieceEntries => pieces
+      .expand((it) => it.pieces)
+      .where((it) => it != null)
+      .map(_splitEnum);
 
   @override
-  List<AvataaarPart> get pieces => [top, clothes, eyes, eyebrow, mouth, skin, style];
+  List<AvataaarPart> get pieces =>
+      [top, clothes, eyes, eyebrow, mouth, skin, style];
 
   MapEntry<String, String> _splitEnum<T>(T enumValue) {
     final split = enumValue.toString().split('.');
@@ -115,30 +120,36 @@ class Avataaar implements AvataaarPart {
       var svgString = await http.get(Uri.parse(toUrl())).then((it) => it.body);
 
       if (backgroundColor != null) {
-        svgString = BackgroundColorHelper.getSvgWithBackground(svgString, backgroundColor!);
+        svgString = BackgroundColorHelper.getSvgWithBackground(
+            svgString, backgroundColor!);
       }
 
       var unit8Picture = Uint8List.fromList(svgString.codeUnits);
       //Produces a [Drawableroot] from a [Uint8List] of SVG byte data (assumes UTF8 encoding).
-      var svgDrawableRoot = await svg.fromSvgBytes(unit8Picture, 'svgToPngAvataaar');
+      var svgDrawableRoot =
+          await svg.fromSvgBytes(unit8Picture, 'svgToPngAvataaar');
 
       // Convert to ui.Picture
-      var picture = svgDrawableRoot.toPicture(size: Size(finalWidth, finalHeight));
+      var picture =
+          svgDrawableRoot.toPicture(size: Size(finalWidth, finalHeight));
       // Convert to ui.Image. toImage() takes width and height as parameters
       // you need to find the best size to suit your needs and take into account the screen DPI
-      var image = await picture.toImage(finalWidth.toInt(), finalHeight.toInt());
+      var image =
+          await picture.toImage(finalWidth.toInt(), finalHeight.toInt());
       var bytes = await image.toByteData(format: ImageByteFormat.png);
       var tempPath = (await getTemporaryDirectory()).path;
       //Saving as a temporary file using a unique string
       var file = File('$tempPath/${Uuid().v4()}.png');
-      await file.writeAsBytes(bytes!.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
+      await file.writeAsBytes(
+          bytes!.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
       return file;
     } on Exception catch (e) {
       throw Exception('Error transforming svg to a png -> $e');
     }
   }
 
-  static Avataaar fromJson(String value) => AvataaarConverter().fromMap(json.decode(value));
+  static Avataaar fromJson(String value) =>
+      AvataaarConverter().fromMap(json.decode(value));
 
   Avataaar copyWith({
     Top? top,
