@@ -1,3 +1,7 @@
+## [0.1.7] - 02/01/22
+
+* Updated documentation
+
 ## [0.1.6] - 27/12/21
 
 * Updated readme
