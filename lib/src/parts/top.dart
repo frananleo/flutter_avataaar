@@ -41,13 +41,10 @@ class Top implements AvataaarPart {
 
   @override
   int get hashCode {
-    return topType.hashCode ^
-        accessoriesType.hashCode ^
-        hatColor.hashCode ^
-        hairColor.hashCode ^
-        facialHair.hashCode;
+    return topType.hashCode ^ accessoriesType.hashCode ^ hatColor.hashCode ^ hairColor.hashCode ^ facialHair.hashCode;
   }
 
+  ///Get random [Top]
   static Top get random {
     return Top(
       topType: randomPiece(TopType.values),
@@ -74,17 +71,18 @@ class Top implements AvataaarPart {
     );
   }
 
+  ///Transform from map to [Top]
   factory Top.fromMap(Map<String, dynamic> map) {
     return Top(
       topType: Converter.enumFromJson(TopType.values, map['topType'])!,
-      accessoriesType: Converter.enumFromJson(
-          AccessoriesType.values, map['accessoriesType']),
+      accessoriesType: Converter.enumFromJson(AccessoriesType.values, map['accessoriesType']),
       hatColor: Converter.enumFromJson(HatColor.values, map['hatColor']),
       hairColor: Converter.enumFromJson(HairColor.values, map['hairColor']),
       facialHair: FacialHair.fromMap(map['facialHair']),
     );
   }
 
+  ///Transform from [Top] to map
   Map<String, dynamic> toMap() {
     return {
       'topType': Converter.enumToJson(topType),
@@ -95,8 +93,10 @@ class Top implements AvataaarPart {
     };
   }
 
+  ///Encode to json
   String toJson() => json.encode(toMap());
 
+  ///Decode from json
   factory Top.fromJson(String source) => Top.fromMap(json.decode(source));
 
   @override

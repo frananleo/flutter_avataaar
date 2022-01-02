@@ -23,6 +23,8 @@ class Eyes implements AvataaarPart {
   @override
   List get pieces => [eyeType];
 
+  ///Get random [Eyes]
+
   static Eyes get random => Eyes(eyeType: randomPiece(EyeType.values));
 
   Eyes copyWith({
@@ -33,18 +35,22 @@ class Eyes implements AvataaarPart {
     );
   }
 
+  ///Tranform from map to [Eyes]
   factory Eyes.fromMap(Map<String, dynamic> map) {
     return Eyes(
       eyeType: Converter.enumFromJson(EyeType.values, map['eyeType']),
     );
   }
 
+  ///Tranform from [Eyes] to map
   Map<String, dynamic> toMap() {
     return {'eyeType': Converter.enumToJson(eyeType)};
   }
 
+  ///Encode to json
   String toJson() => json.encode(toMap());
 
+  ///Decode from json
   factory Eyes.fromJson(String source) => Eyes.fromMap(json.decode(source));
 
   @override

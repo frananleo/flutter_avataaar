@@ -4,6 +4,7 @@ import 'package:flutter_avataaar/src/helpers/converter.dart';
 import 'package:flutter_avataaar/src/parts/parts.dart';
 import 'package:flutter_avataaar/src/parts/pieces.dart';
 
+///Skin class with the [skinColor]
 class Skin implements AvataaarPart {
   SkinColor skinColor;
 
@@ -34,18 +35,22 @@ class Skin implements AvataaarPart {
     );
   }
 
+  ///Transform from map to [Skin]
   factory Skin.fromMap(Map<String, dynamic> map) {
     return Skin(
       skinColor: Converter.enumFromJson(SkinColor.values, map['skinColor']),
     );
   }
 
+  ///Transform from [Skin] to map
   Map<String, dynamic> toMap() {
     return {'skinColor': Converter.enumToJson(skinColor)};
   }
 
+  ///Encode to json
   String toJson() => json.encode(toMap());
 
+  ///Decode from json
   factory Skin.fromJson(String source) => Skin.fromMap(json.decode(source));
 
   @override

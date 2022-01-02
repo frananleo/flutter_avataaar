@@ -24,6 +24,8 @@ class Style implements AvataaarPart {
   @override
   int get hashCode => avatarStyle.hashCode;
 
+  ///Get random[Style]
+
   static Style get random {
     return Style(avatarStyle: AvatarStyle.circle);
   }
@@ -36,19 +38,22 @@ class Style implements AvataaarPart {
     );
   }
 
+  ///Transform from map to [Style]
   factory Style.fromMap(Map<String, dynamic> map) {
     return Style(
-      avatarStyle:
-          Converter.enumFromJson(AvatarStyle.values, map['avatarStyle']),
+      avatarStyle: Converter.enumFromJson(AvatarStyle.values, map['avatarStyle']),
     );
   }
 
+  ///Transform from [Style] to map
   Map<String, dynamic> toMap() {
     return {'avatarStyle': Converter.enumToJson(avatarStyle)};
   }
 
+  ///Encode to json
   String toJson() => json.encode(toMap());
 
+  ///Decode from json
   factory Style.fromJson(String source) => Style.fromMap(json.decode(source));
 
   @override

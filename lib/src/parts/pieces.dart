@@ -6,16 +6,19 @@ T randomPiece<T>(List<T> pieces) {
   return pieces[index];
 }
 
+///Avatar styles, unfourtunately [AvatarStyle.transparent] is not recognized by SvgPicture package due to Style
 enum AvatarStyle {
   circle,
   transparent,
 }
 
+///Avatar styles tranlation keys
 final List<String> avatarStyleNames = [
   'avatar_style_circle',
   'avatar_style_transparent',
 ];
 
+///Top types
 enum TopType {
   noHair,
   eyepatch,
@@ -54,6 +57,7 @@ enum TopType {
   shortHairTheCaesarSidePart,
 }
 
+///Top types translation keys
 final List<String> topTypeNames = [
   'top_type_no_hair',
   'top_type_eyepatch',
@@ -92,6 +96,7 @@ final List<String> topTypeNames = [
   'top_type_short_hair_the_caesar_side_part',
 ];
 
+///Accesories types
 enum AccessoriesType {
   blank,
   kurt,
@@ -102,6 +107,7 @@ enum AccessoriesType {
   wayfarers,
 }
 
+///Accessories types translation keys
 final List<String> accessoriesTypeNames = [
   'accessories_type_blank',
   'accessories_type_kurt',
@@ -112,6 +118,7 @@ final List<String> accessoriesTypeNames = [
   'accessories_type_wayfarers',
 ];
 
+///Hair color types
 enum HairColor {
   auburn,
   black,
@@ -125,6 +132,7 @@ enum HairColor {
   silverGray,
 }
 
+///Hair color translation keys
 final List<String> hairColorNames = [
   'hair_color_auburn',
   'hair_color_black',
@@ -138,6 +146,7 @@ final List<String> hairColorNames = [
   'hair_color_silver_gray',
 ];
 
+///Hat color types
 enum HatColor {
   black,
   blue01,
@@ -156,6 +165,7 @@ enum HatColor {
   white,
 }
 
+///Hat colors translation keys
 final List<String> hatColorNames = [
   'hat_color_black',
   'hat_color_blue_01',
@@ -174,6 +184,7 @@ final List<String> hatColorNames = [
   'hat_color_white',
 ];
 
+///Facial hair types
 enum FacialHairType {
   blank,
   beardMedium,
@@ -183,6 +194,7 @@ enum FacialHairType {
   moustacheMagnum,
 }
 
+///Facial hair translation keys
 final List<String> facialHairTypeNames = [
   'facial_hair_type_blank',
   'facial_hair_type_beard_medium',
@@ -192,6 +204,7 @@ final List<String> facialHairTypeNames = [
   'facial_hair_type_moustache_magnum',
 ];
 
+///Facial hair color type
 enum FacialHairColor {
   auburn,
   black,
@@ -203,6 +216,7 @@ enum FacialHairColor {
   red,
 }
 
+///Facial hair color translation keys
 final List<String> facialHairColorNames = [
   'facial_hair_color_auburn',
   'facial_hair_color_black',
@@ -214,6 +228,7 @@ final List<String> facialHairColorNames = [
   'facial_hair_color_red',
 ];
 
+///Clothe types
 enum ClotheType {
   blazerShirt,
   blazerSweater,
@@ -226,6 +241,7 @@ enum ClotheType {
   shirtVNeck,
 }
 
+///Clothe translation keys
 final List<String> clotheTypeNames = [
   'clothe_type_blazer_shirt',
   'clothe_type_blazer_sweater',
@@ -238,6 +254,7 @@ final List<String> clotheTypeNames = [
   'clothe_type_shirt_v_neck',
 ];
 
+///Clothe color types
 enum ClotheColor {
   black,
   blue01,
@@ -256,6 +273,7 @@ enum ClotheColor {
   white,
 }
 
+///Clothe color tranlation keys
 final List<String> clotheColorNames = [
   'clothe_color_black',
   'clothe_color_blue_01',
@@ -274,6 +292,7 @@ final List<String> clotheColorNames = [
   'clothe_color_white',
 ];
 
+///Graphic types
 enum GraphicType {
   bat,
   cumbia,
@@ -288,6 +307,7 @@ enum GraphicType {
   skull,
 }
 
+///Graphic type tranlation keys
 final List<String> graphicTypeNames = [
   'graphic_type_bat',
   'graphic_type_cumbia',
@@ -302,6 +322,7 @@ final List<String> graphicTypeNames = [
   'graphic_type_skull',
 ];
 
+///Eye types
 enum EyeType {
   close,
   cry,
@@ -317,6 +338,7 @@ enum EyeType {
   winkWacky,
 }
 
+/// Eye translation keys
 final List<String> eyeTypeNames = [
   'eye_type_close',
   'eye_type_cry',
@@ -332,6 +354,7 @@ final List<String> eyeTypeNames = [
   'eye_type_wink_wacky',
 ];
 
+///Eyebrow types
 enum EyebrowType {
   angry,
   angryNatural,
@@ -347,6 +370,7 @@ enum EyebrowType {
   upDownNatural,
 }
 
+///Eyebrow translation keys
 final List<String> eyebrowTypeNames = [
   'eyebrow_type_angry',
   'eyebrow_type_angry_natural',
@@ -362,6 +386,7 @@ final List<String> eyebrowTypeNames = [
   'eyebrow_type_up_down_natural',
 ];
 
+///Mouth types
 enum MouthType {
   concerned,
   defaultType,
@@ -377,6 +402,7 @@ enum MouthType {
   vomit,
 }
 
+///Mouth translation keys
 final List<String> mouthTypeNames = [
   'mouth_type_concerned',
   'mouth_type_default',
@@ -392,6 +418,7 @@ final List<String> mouthTypeNames = [
   'mouth_type_vomit',
 ];
 
+/// Skin color types
 enum SkinColor {
   tanned,
   yellow,
@@ -402,6 +429,7 @@ enum SkinColor {
   black,
 }
 
+/// Skin color translation keys
 final List<String> skinColorNames = [
   'skin_color_tanned',
   'skin_color_yellow',

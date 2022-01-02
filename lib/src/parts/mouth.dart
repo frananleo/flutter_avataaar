@@ -34,18 +34,22 @@ class Mouth implements AvataaarPart {
     );
   }
 
+  ///Transform from map to [Mouth]
   factory Mouth.fromMap(Map<String, dynamic> map) {
     return Mouth(
       mouthType: Converter.enumFromJson(MouthType.values, map['mouthType']),
     );
   }
 
+  ///Transform from [Mouth] to map
   Map<String, dynamic> toMap() {
     return {'mouthType': Converter.enumToJson(mouthType)};
   }
 
+  ///Encode to json
   String toJson() => json.encode(toMap());
 
+  ///Decode from json
   factory Mouth.fromJson(String source) => Mouth.fromMap(json.decode(source));
 
   @override

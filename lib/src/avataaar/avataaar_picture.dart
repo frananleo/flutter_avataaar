@@ -37,14 +37,12 @@ class AvataaarPicture extends StatelessWidget {
 
               // FROM API TO CHANGE BACKGROUND COLOR
               if (avatar.backgroundColor != AvataaarsApi.baseBackgroundColor) {
-                string = BackgroundColorHelper.getSvgWithBackground(
-                    string, avatar.backgroundColor);
+                string = BackgroundColorHelper.getSvgWithBackground(string, avatar.backgroundColor);
               }
               return SvgPicture.string(
                 string,
-                placeholderBuilder: placeholder != null
-                    ? (context) => placeholder!
-                    : (context) => CircularProgressIndicator(),
+                placeholderBuilder:
+                    placeholder != null ? (context) => placeholder! : (context) => CircularProgressIndicator(),
               );
             } else if (snapshot.hasError) {
               return errorWidget ??
@@ -61,6 +59,7 @@ class AvataaarPicture extends StatelessWidget {
         );
   }
 
+  ///Easiest way to fetch the SVG doing HTTP request
   Future<String> fetchSvg(String url) async {
     try {
       final response = await http.get(Uri.parse(url));

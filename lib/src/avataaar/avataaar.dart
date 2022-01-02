@@ -95,13 +95,12 @@ class Avataaar implements AvataaarPart {
         style,
       ];
 
+  ///Encode to json
   String toJson() => json.encode(toMap());
 
   ///Entries, which are necesary to generate the url
-  Iterable<MapEntry<String, String>> get _pieceEntries => pieces
-      .expand((it) => it.pieces)
-      .where((it) => it != null)
-      .map(_splitEnum);
+  Iterable<MapEntry<String, String>> get _pieceEntries =>
+      pieces.expand((it) => it.pieces).where((it) => it != null).map(_splitEnum);
 
   ///Split the enum in two parts to use the first one as the key of the parameter on the URL and the second as the value.
   MapEntry<String, String> _splitEnum<T>(T enumValue) {
@@ -147,22 +146,18 @@ class Avataaar implements AvataaarPart {
       var svgString = await http.get(Uri.parse(toUrl())).then((it) => it.body);
 
       if (backgroundColor != AvataaarsApi.baseBackgroundColor) {
-        svgString = BackgroundColorHelper.getSvgWithBackground(
-            svgString, backgroundColor);
+        svgString = BackgroundColorHelper.getSvgWithBackground(svgString, backgroundColor);
       }
 
       var unit8Picture = Uint8List.fromList(svgString.codeUnits);
       //Produces a [Drawableroot] from a [Uint8List] of SVG byte data (assumes UTF8 encoding).
-      var svgDrawableRoot =
-          await svg.fromSvgBytes(unit8Picture, 'svgToPngAvataaar');
+      var svgDrawableRoot = await svg.fromSvgBytes(unit8Picture, 'svgToPngAvataaar');
 
       // Convert to ui.Picture
-      var picture =
-          svgDrawableRoot.toPicture(size: Size(finalWidth, finalHeight));
+      var picture = svgDrawableRoot.toPicture(size: Size(finalWidth, finalHeight));
       // Convert to ui.Image. toImage() takes width and height as parameters
       // you need to find the best size to suit your needs and take into account the screen DPI
-      var image =
-          await picture.toImage(finalWidth.toInt(), finalHeight.toInt());
+      var image = await picture.toImage(finalWidth.toInt(), finalHeight.toInt());
       var bytes = await image.toByteData(format: ImageByteFormat.png);
       var tempPath = (await getTemporaryDirectory()).path;
       //Saving as a temporary file using a unique string
@@ -179,9 +174,10 @@ class Avataaar implements AvataaarPart {
     }
   }
 
-  static Avataaar fromJson(String value) =>
-      Avataaar.fromMap(json.decode(value));
+  ///Decode from json
+  static Avataaar fromJson(String value) => Avataaar.fromMap(json.decode(value));
 
+  ///Transform from map to [Avataaar]
   factory Avataaar.fromMap(Map<String, dynamic> map) => Avataaar(
         top: Top.fromMap(map['Top']),
         clothes: Clothes.fromMap(map['Clothes']),
@@ -192,6 +188,7 @@ class Avataaar implements AvataaarPart {
         style: Style.fromMap(map['Style']),
       );
 
+  ///Transform from [Avataaar] to map
   Map<String, dynamic> toMap() => {
         'Top': top.toMap(),
         'Clothes': clothes.toMap(),
