@@ -13,7 +13,6 @@ import 'package:flutter_avataaar/src/helpers/hex_color.dart';
 import '../parts/parts.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
