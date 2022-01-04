@@ -1,3 +1,7 @@
+## [0.1.8] - 04/01/22
+
+* Removed path_provided to support web
+
 ## [0.1.7] - 02/01/22
 
 * Updated documentation
