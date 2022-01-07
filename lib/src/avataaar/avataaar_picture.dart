@@ -1,6 +1,5 @@
 import 'package:flutter_avataaar/src/avataaar/avataaar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_avataaar/src/helpers/hex_color.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -63,12 +62,16 @@ class AvataaarPicture extends StatelessWidget {
 
   ///Easiest way to fetch the SVG doing HTTP request
   Future<String> fetchSvg(String url) async {
+    if (Avataaar.cachedUrls.containsKey(url)) {
+      return Avataaar.cachedUrls[url]!;
+    }
     try {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.
+        Avataaar.cachedUrls[url] = response.body;
         return response.body;
       } else {
         // If the server did not return a 200 OK response,

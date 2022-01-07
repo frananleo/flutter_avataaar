@@ -123,6 +123,8 @@ class Avataaar implements AvataaarPart {
     return '$baseUrl/?$params';
   }
 
+  static final Map<String, String> cachedUrls = <String, String>{};
+
   /// Get a png [File] from the current avataaar and storage it on the provided paths.
   ///
   /// Avataaar svg is requested, converted into a png file and storage as a temporary file. Png [File] will be return.
@@ -144,8 +146,17 @@ class Avataaar implements AvataaarPart {
       var finalWidth = width ?? 256.0;
       var finalHeight = height ?? 256.0;
 
-      //getting the svg from server
-      var svgString = await http.get(Uri.parse(toUrl())).then((it) => it.body);
+      final url = toUrl();
+      String svgString;
+      //check if the url is already cached
+      if (cachedUrls.containsKey(url)) {
+        svgString = cachedUrls[url]!;
+      } else {
+        //getting the svg from server
+        svgString = await http.get(Uri.parse(url)).then((it) => it.body);
+        //storing the response in cache
+        cachedUrls[url] = svgString;
+      }
 
       if (backgroundColor != AvataaarsApi.baseBackgroundColor) {
         svgString = BackgroundColorHelper.getSvgWithBackground(
