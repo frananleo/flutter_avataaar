@@ -29,7 +29,7 @@ class AvataaarPicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return customBuilder?.call(context, avatar) ??
         FutureBuilder<String>(
-          future: fetchSvg(avatar.toUrl()),
+          future: fetchSvg(avatar.toUrl(baseUrlOverride: baseUrl)),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var string = snapshot.data!;

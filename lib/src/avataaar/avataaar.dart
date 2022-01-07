@@ -113,14 +113,14 @@ class Avataaar implements AvataaarPart {
   }
 
   /// Create the url for the current [Avataaar] data with all parameters needed.
-  String toUrl() {
+  String toUrl({String? baseUrlOverride}) {
     //https://avataaars.io required that the first letter must be capitalised. fixed keys and added the capitalization to value
     final params = _pieceEntries.map((it) {
       final key = it.key[0].toLowerCase() + it.key.substring(1);
       final value = it.value[0].toUpperCase() + it.value.substring(1);
       return '$key=$value';
     }).join('&');
-    return '$baseUrl/?$params';
+    return '${baseUrlOverride ?? baseUrl}/?$params';
   }
 
   static final Map<String, String> cachedUrls = <String, String>{};
