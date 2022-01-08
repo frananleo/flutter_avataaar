@@ -1,6 +1,12 @@
+## [0.1.11] - 04/01/22
+
+* Fixed avataaar_picture placeholder and removed baseUrl from there
+
+
 ## [0.1.10] - 04/01/22
 
 * removed universal_io
+
 
 ## [0.1.9] - 04/01/22
 
