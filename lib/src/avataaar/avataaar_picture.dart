@@ -9,7 +9,6 @@ import '../helpers/avataaar_api.dart';
 
 ///Easiest way to render the Avataaar using the [SvgPicture] package. Builder could be customized.
 class AvataaarPicture extends StatelessWidget {
-  final String baseUrl;
   final Widget Function(BuildContext context, Avataaar avataaar)? customBuilder;
   final Avataaar avatar;
   final Widget? placeholder;
@@ -19,7 +18,6 @@ class AvataaarPicture extends StatelessWidget {
   AvataaarPicture.builder({
     Key? key,
     this.customBuilder,
-    this.baseUrl = AvataaarsApi.baseUrl,
     this.placeholder,
     this.errorWidget,
     this.onError,
