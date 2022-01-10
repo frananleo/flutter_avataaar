@@ -59,11 +59,15 @@ class AvataaarPicture extends StatelessWidget {
   ///Easiest way to fetch the SVG doing HTTP request
   Future<String> fetchSvg(String url) async {
     try {
+      if (Avataaar.cachedUrls.containsKey(avatar.toUrl())) {
+        return Avataaar.cachedUrls[avatar.toUrl()]!;
+      }
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
-        // then parse the JSON.
+        // then save it and parse the JSON.
+        Avataaar.cachedUrls.putIfAbsent(avatar.toUrl(), () => response.body);
         return response.body;
       } else {
         // If the server did not return a 200 OK response,
