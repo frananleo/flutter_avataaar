@@ -1,5 +1,5 @@
 name: flutter_avataaar
-description: Fork of Flutter wrapper widget for Avataaars API allowing to generate and display avatar images.
+description: Flutter wrapper widget for Avataaars API allowing to generate and display avatar images.
 repository: https://github.com/frananleo/flutter_avataaar
 version: 0.1.12
 environment:
