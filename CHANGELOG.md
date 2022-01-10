@@ -1,4 +1,8 @@
-## [0.1.11] - 04/01/22
+## [0.1.12] - 10/01/22
+
+* Added web support
+
+## [0.1.11] - 10/01/22
 
 * Fixed avataaar_picture placeholder and removed baseUrl from there
 * Added cached urls to avataaar class in order to do not multirequest same item
