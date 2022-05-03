@@ -52,11 +52,40 @@ class _AvataaarExampleState extends State<AvataaarExample> {
                     },
                   ),
                 ),
-                IconButton(
-                  iconSize: 48.0,
-                  icon: const Icon(Icons.refresh),
-                  onPressed: () => setState(
-                      () => _avatar = Avataaar.random(baseUrl: baseUrl)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      iconSize: 48.0,
+                      icon: const Icon(Icons.refresh),
+                      onPressed: () => setState(() => _avatar = Avataaar.random(baseUrl: baseUrl)),
+                    ),
+                    Builder(
+                      builder: (_) {
+                        return ElevatedButton(
+                          onPressed: () async {
+                            try {
+                              final file = await _avatar.getPngFromSvg();
+                              ScaffoldMessenger.of(_).showSnackBar(
+                                SnackBar(
+                                  content: Text(file.path),
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            } on Exception catch (e) {
+                              ScaffoldMessenger.of(_).showSnackBar(
+                                SnackBar(
+                                  content: Text(e.toString()),
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            }
+                          },
+                          child: Text('Save icon'),
+                        );
+                      },
+                    )
+                  ],
                 ),
               ],
             ),

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_avataaar/flutter_avataaar.dart';
 import 'package:flutter_avataaar/src/helpers/avataaar_api.dart';
 import 'package:flutter_avataaar/src/helpers/hex_color.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../parts/parts.dart';
 import 'dart:ui';
@@ -128,7 +129,7 @@ class Avataaar implements AvataaarPart {
   ///
   /// Throw an [Exception] if it fails
   Future<File> getPngFromSvg({
-    required String path,
+    String? path,
     String? fileName,
     double? width,
     double? height,
@@ -177,8 +178,7 @@ class Avataaar implements AvataaarPart {
 
       //Saving as a temporary file using a unique string
 
-      var file = File('$path/${fileName ?? Uuid().v4()}.png');
-
+      var file = File('${path ?? (await getTemporaryDirectory()).path}/${fileName ?? Uuid().v4()}.png');
       if (await file.exists()) {
         if (overrideFile) {
           await file.delete();
