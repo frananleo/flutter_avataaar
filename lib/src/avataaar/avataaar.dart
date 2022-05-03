@@ -129,8 +129,10 @@ class Avataaar implements AvataaarPart {
   /// Throw an [Exception] if it fails
   Future<File> getPngFromSvg({
     required String path,
+    String? fileName,
     double? width,
     double? height,
+    bool overrideFile = false,
   }) async {
     try {
       // if just one is set, has a square
@@ -174,7 +176,17 @@ class Avataaar implements AvataaarPart {
       var bytes = await image.toByteData(format: ImageByteFormat.png);
 
       //Saving as a temporary file using a unique string
-      var file = File('$path/${Uuid().v4()}.png');
+
+      var file = File('$path/${fileName ?? Uuid().v4()}.png');
+
+      if (await file.exists()) {
+        if (overrideFile) {
+          await file.delete();
+        } else {
+          throw Exception('File exists');
+        }
+      }
+
       await file.writeAsBytes(
         bytes!.buffer.asUint8List(
           bytes.offsetInBytes,
