@@ -1,3 +1,9 @@
+## [0.1.13] - 03/05/22
+
+* Added fileName and path as a not-required parameters to png generator.
+* Improved example.
+
+
 ## [0.1.12] - 10/01/22
 
 * Added web support
