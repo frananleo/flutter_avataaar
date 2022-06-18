@@ -78,7 +78,7 @@ class Top implements AvataaarPart {
   ///Transform from map to [Top]
   factory Top.fromMap(Map<String, dynamic> map) {
     return Top(
-      topType: Converter.enumFromJson(TopType.values, map['topType'])!,
+      topType: Converter.enumFromJson(TopType.values, map['topType']),
       accessoriesType: Converter.enumFromJson(
           AccessoriesType.values, map['accessoriesType']),
       hatColor: Converter.enumFromJson(HatColor.values, map['hatColor']),
