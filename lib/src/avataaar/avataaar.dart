@@ -7,11 +7,9 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_avataaar/flutter_avataaar.dart';
-import 'package:flutter_avataaar/src/helpers/avataaar_api.dart';
 import 'package:flutter_avataaar/src/helpers/hex_color.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../parts/parts.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
 

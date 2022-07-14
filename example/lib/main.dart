@@ -1,6 +1,4 @@
 import 'package:example/assets_loader.dart';
-// ignore: implementation_imports
-import 'package:flutter_avataaar/src/avataaar/avataaar_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avataaar/flutter_avataaar.dart';
 
