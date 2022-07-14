@@ -1,3 +1,7 @@
+## [0.1.13] - 13/07/22
+
+* Fixed fromMap method.
+
 ## [0.1.13] - 03/05/22
 
 * Added fileName and path as a not-required parameters to png generator.
