@@ -396,11 +396,10 @@ class AvataaarGenerator extends StatelessWidget {
     String icon,
   ) {
     if (sectionBuilder != null) {
-      return sectionBuilder!(
+      return sectionBuilder(
         context,
         onTap,
         currentSelected,
-        type,
       );
     }
     return Row(
